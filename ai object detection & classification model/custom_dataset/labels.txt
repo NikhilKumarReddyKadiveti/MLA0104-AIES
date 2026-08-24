@@ -1,0 +1,22 @@
+wallpaperflare.com_wallpaper (22).jpg,0,0.1,0.1,0.5,0.5
+wallpaperflare.com_wallpaper (21).jpg,1,0.2,0.2,0.6,0.6
+wallpaperflare.com_wallpaper (20).jpg,2,0.15,0.3,0.7,0.8
+wallpaperflare.com_wallpaper (19).jpg,0,0.3,0.1,0.8,0.7
+wallpaperflare.com_wallpaper (18).jpg,1,0.0,0.2,0.5,0.9
+wallpaperflare.com_wallpaper (17).jpg,2,0.25,0.25,0.75,0.75
+wallpaperflare.com_wallpaper (16).jpg,0,0.1,0.4,0.6,0.9
+wallpaperflare.com_wallpaper (15).jpg,1,0.4,0.1,0.9,0.6
+wallpaperflare.com_wallpaper (14).jpg,2,0.3,0.3,0.6,0.6
+wallpaperflare.com_wallpaper (13).jpg,0,0.2,0.1,0.8,0.9
+wallpaperflare.com_wallpaper (12).jpg,1,0.1,0.1,0.9,0.9
+wallpaperflare.com_wallpaper (11).jpg,2,0.0,0.0,1.0,1.0
+wallpaperflare.com_wallpaper (10).jpg,0,0.35,0.2,0.65,0.8
+wallpaperflare.com_wallpaper (9).jpg,1,0.15,0.15,0.45,0.75
+wallpaperflare.com_wallpaper (8).jpg,2,0.5,0.5,0.9,0.9
+wallpaperflare.com_wallpaper (7).jpg,0,0.2,0.4,0.8,0.8
+wallpaperflare.com_wallpaper (6).jpg,1,0.1,0.2,0.5,0.7
+wallpaperflare.com_wallpaper (5).jpg,2,0.4,0.3,0.9,0.8
+wallpaperflare.com_wallpaper (4).jpg,0,0.25,0.1,0.75,0.9
+wallpaperflare.com_wallpaper (3).jpg,1,0.0,0.3,0.6,0.8
+wallpaperflare.com_wallpaper.png,2,0.1,0.1,0.9,0.9
+WhatsApp Image 2026-04-06 at 23.28.38.jpeg,0,0.2,0.2,0.8,0.8
