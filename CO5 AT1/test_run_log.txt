@@ -1,0 +1,76 @@
+############ TEST CASE 1: Weak Battery scenario ############
+
+=== FORWARD CHAINING ===
+Rule fired -> weak_battery (conditions: [slow_crank,dashboard_dim_lights,warning_light_battery])
+
+Forward chaining complete.
+Diagnosed fault(s):
+ - weak_battery : Battery is weak or discharged. Charge or replace the battery.
+
+=== BACKWARD CHAINING: testing goal weak_battery ===
+Trying rule for weak_battery, needs: [slow_crank,dashboard_dim_lights,warning_light_battery]
+  [OK] slow_crank is present
+  [OK] dashboard_dim_lights is present
+  [OK] warning_light_battery is present
+GOAL PROVED: weak_battery
+
+=== EXPLANATION ===
+Fault: weak_battery
+Required symptoms: [slow_crank,dashboard_dim_lights,warning_light_battery]
+Reason: all required symptoms support this rule.
+Recommended action: Battery is weak or discharged. Charge or replace the battery.
+
+
+############ TEST CASE 2: Starter Motor scenario ############
+
+=== FORWARD CHAINING ===
+Rule fired -> faulty_starter_motor (conditions: [clicking_sound,engine_wont_start])
+
+Forward chaining complete.
+Diagnosed fault(s):
+ - faulty_starter_motor : Starter motor is faulty. Inspect or replace the starter motor.
+
+=== BACKWARD CHAINING: testing goal faulty_starter_motor ===
+Trying rule for faulty_starter_motor, needs: [clicking_sound,engine_wont_start]
+  [OK] clicking_sound is present
+  [OK] engine_wont_start is present
+GOAL PROVED: faulty_starter_motor
+
+
+############ TEST CASE 3: Multi-fault scenario ############
+
+=== FORWARD CHAINING ===
+Rule fired -> low_engine_oil (conditions: [warning_light_oil,engine_noise_knocking])
+Rule fired -> worn_engine_mounts (conditions: [abnormal_vibration_idle,engine_noise_knocking])
+
+Forward chaining complete.
+Diagnosed fault(s):
+ - low_engine_oil : Engine oil level is low. Top up or change engine oil immediately.
+ - worn_engine_mounts : Engine mounts are worn. Inspect and replace engine mounts.
+
+=== BACKWARD CHAINING: testing goal worn_engine_mounts ===
+Trying rule for worn_engine_mounts, needs: [abnormal_vibration_idle,engine_noise_knocking]
+  [OK] abnormal_vibration_idle is present
+  [OK] engine_noise_knocking is present
+GOAL PROVED: worn_engine_mounts
+
+=== BACKWARD CHAINING: testing goal low_engine_oil ===
+Trying rule for low_engine_oil, needs: [warning_light_oil,engine_noise_knocking]
+  [OK] warning_light_oil is present
+  [OK] engine_noise_knocking is present
+GOAL PROVED: low_engine_oil
+
+
+############ TEST CASE 4: Insufficient evidence ############
+
+=== FORWARD CHAINING ===
+Rule fired -> worn_brake_pads (conditions: [squealing_brakes])
+
+Forward chaining complete.
+Diagnosed fault(s):
+ - worn_brake_pads : Brake pads are worn. Inspect and replace brake pads.
+
+=== BACKWARD CHAINING: testing goal fuel_pump_failure ===
+Trying rule for fuel_pump_failure, needs: [engine_wont_start,stalling,fuel_smell]
+  [MISSING] engine_wont_start not observed
+GOAL FAILED: insufficient evidence for fuel_pump_failure
