@@ -1,0 +1,103 @@
+
+======================================================================
+SCENARIO: L1  ({'building_collapse': True, 'trapped_people': 12, 'smoke_detected': True, 'fire': False, 'toxic_gas': False, 'rising_water': False, 'stranded_people': 0, 'injured_people': 0, 'ambulance_access': False})
+======================================================================
+[SEARCH] A* explored nodes: ['C0', 'N1', 'L1']
+[SEARCH] Best route: C0 -> N1 -> L1  | path cost g = 4.48 km
+[KB] Known facts for L1: ['building_collapse', 'smoke_detected', 'trapped_people']
+[FORWARD CHAINING]
+  Fired R1: {'trapped_people', 'building_collapse'} -> rescue_priority_high
+  Fired R5: {'building_collapse', 'smoke_detected'} -> fire_team_required
+  Fired R8: {'rescue_priority_high', 'fire_team_required'} -> multi_team_deployment
+  Fired R9: {'trapped_people', 'smoke_detected'} -> structural_collapse_risk
+  Fired R10: {'structural_collapse_risk'} -> drone_survey_required
+[FORWARD CHAINING] New conclusions: ['drone_survey_required', 'fire_team_required', 'multi_team_deployment', 'rescue_priority_high', 'structural_collapse_risk']
+[BACKWARD CHAINING] Goal: multi_team_deployment?
+Trying R8: multi_team_deployment <- {'rescue_priority_high', 'fire_team_required'}
+  Trying R1: rescue_priority_high <- {'trapped_people', 'building_collapse'}
+    FACT 'trapped_people' is already known -> TRUE
+    FACT 'building_collapse' is already known -> TRUE
+  R1 succeeds -> 'rescue_priority_high' is TRUE
+  Trying R5: fire_team_required <- {'building_collapse', 'smoke_detected'}
+    FACT 'building_collapse' is already known -> TRUE
+    FACT 'smoke_detected' is already known -> TRUE
+  R5 succeeds -> 'fire_team_required' is TRUE
+R8 succeeds -> 'multi_team_deployment' is TRUE
+[BACKWARD CHAINING] Result: multi_team_deployment = True | rule trail: ['R1', 'R5', 'R8']
+[AGENT] Severity/priority score = 46.0
+[AGENT] Recommended resource     = Rescue + Medical Team
+[AGENT] Recommended route        = C0 -> N1 -> L1 (4.48 km)
+
+======================================================================
+SCENARIO: L2  ({'building_collapse': False, 'trapped_people': 0, 'smoke_detected': False, 'fire': False, 'toxic_gas': False, 'rising_water': True, 'stranded_people': 20, 'injured_people': 0, 'ambulance_access': False})
+======================================================================
+[SEARCH] A* explored nodes: ['C0', 'N2', 'L2']
+[SEARCH] Best route: C0 -> N2 -> L2  | path cost g = 4.48 km
+[KB] Known facts for L2: ['rising_water', 'stranded_people']
+[FORWARD CHAINING]
+  Fired R3: {'rising_water', 'stranded_people'} -> rescue_boat_required
+  Fired R7: {'rescue_boat_required'} -> deploy_water_rescue_unit
+[FORWARD CHAINING] New conclusions: ['deploy_water_rescue_unit', 'rescue_boat_required']
+[BACKWARD CHAINING] Goal: deploy_water_rescue_unit?
+Trying R7: deploy_water_rescue_unit <- {'rescue_boat_required'}
+  Trying R3: rescue_boat_required <- {'rising_water', 'stranded_people'}
+    FACT 'rising_water' is already known -> TRUE
+    FACT 'stranded_people' is already known -> TRUE
+  R3 succeeds -> 'rescue_boat_required' is TRUE
+R7 succeeds -> 'deploy_water_rescue_unit' is TRUE
+[BACKWARD CHAINING] Result: deploy_water_rescue_unit = True | rule trail: ['R3', 'R7']
+[AGENT] Severity/priority score = 35.0
+[AGENT] Recommended resource     = Rescue Boat + Water Rescue Team
+[AGENT] Recommended route        = C0 -> N2 -> L2 (4.48 km)
+
+======================================================================
+SCENARIO: L3  ({'building_collapse': False, 'trapped_people': 0, 'smoke_detected': False, 'fire': True, 'toxic_gas': True, 'rising_water': False, 'stranded_people': 0, 'injured_people': 0, 'ambulance_access': False})
+======================================================================
+[SEARCH] A* explored nodes: ['C0', 'N3', 'L3']
+[SEARCH] Best route: C0 -> N3 -> L3  | path cost g = 3.65 km
+[KB] Known facts for L3: ['fire', 'toxic_gas']
+[FORWARD CHAINING]
+  Fired R2: {'fire', 'toxic_gas'} -> hazmat_team_required
+  Fired R6: {'hazmat_team_required'} -> evacuate_surrounding_area
+  Fired R11: {'toxic_gas'} -> restrict_civilian_access
+[FORWARD CHAINING] New conclusions: ['evacuate_surrounding_area', 'hazmat_team_required', 'restrict_civilian_access']
+[BACKWARD CHAINING] Goal: hazmat_team_required?
+Trying R2: hazmat_team_required <- {'fire', 'toxic_gas'}
+  FACT 'fire' is already known -> TRUE
+  FACT 'toxic_gas' is already known -> TRUE
+R2 succeeds -> 'hazmat_team_required' is TRUE
+[BACKWARD CHAINING] Result: hazmat_team_required = True | rule trail: ['R2']
+[AGENT] Severity/priority score = 30.0
+[AGENT] Recommended resource     = Fire + Hazmat Team
+[AGENT] Recommended route        = C0 -> N3 -> L3 (3.65 km)
+
+======================================================================
+SCENARIO: L4  ({'building_collapse': False, 'trapped_people': 0, 'smoke_detected': False, 'fire': False, 'toxic_gas': False, 'rising_water': False, 'stranded_people': 0, 'injured_people': 4, 'ambulance_access': True})
+======================================================================
+[SEARCH] A* explored nodes: ['C0', 'N3', 'L4']
+[SEARCH] Best route: C0 -> N3 -> L4  | path cost g = 3.65 km
+[KB] Known facts for L4: ['ambulance_access', 'injured_people']
+[FORWARD CHAINING]
+  Fired R4: {'injured_people', 'ambulance_access'} -> medical_team_required
+  Fired R12: {'ambulance_access', 'medical_team_required'} -> route_to_hospital_required
+[FORWARD CHAINING] New conclusions: ['medical_team_required', 'route_to_hospital_required']
+[BACKWARD CHAINING] Goal: route_to_hospital_required?
+Trying R12: route_to_hospital_required <- {'ambulance_access', 'medical_team_required'}
+  FACT 'ambulance_access' is already known -> TRUE
+  Trying R4: medical_team_required <- {'injured_people', 'ambulance_access'}
+    FACT 'injured_people' is already known -> TRUE
+    FACT 'ambulance_access' is already known -> TRUE
+  R4 succeeds -> 'medical_team_required' is TRUE
+R12 succeeds -> 'route_to_hospital_required' is TRUE
+[BACKWARD CHAINING] Result: route_to_hospital_required = True | rule trail: ['R4', 'R12']
+[AGENT] Severity/priority score = 8.0
+[AGENT] Recommended resource     = Medical / Ambulance Team
+[AGENT] Recommended route        = C0 -> N3 -> L4 (3.65 km)
+
+======================================================================
+FINAL DISPATCH ORDER (by severity/priority score, descending)
+======================================================================
+1. L1  | priority= 46.0 | resource=Rescue + Medical Team        | route=C0 -> N1 -> L1 (4.48 km)
+2. L2  | priority= 35.0 | resource=Rescue Boat + Water Rescue Team | route=C0 -> N2 -> L2 (4.48 km)
+3. L3  | priority= 30.0 | resource=Fire + Hazmat Team           | route=C0 -> N3 -> L3 (3.65 km)
+4. L4  | priority=  8.0 | resource=Medical / Ambulance Team     | route=C0 -> N3 -> L4 (3.65 km)
